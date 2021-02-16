@@ -48,6 +48,7 @@ function check_for_confirmation
 # ---------------------------------------------------------------------------------------- #
 # The main function where all of the heavy lifting and script config is done.              #
 # ---------------------------------------------------------------------------------------- #
+
 function main()
 {
     local confirmation=0
