@@ -3,16 +3,19 @@
 # ---------------------------------------------------------------------------------------- #
 # Description                                                                              #
 # ---------------------------------------------------------------------------------------- #
-#                                                                                          #
+# A simply script to run as a pre-commit hook to prompt the user before commits to the     #
+# default main branch are accepted.                                                        #
 # ---------------------------------------------------------------------------------------- #
 
-PROMPT='Are you sure you want to commit to the master branch? [Yes/No] '
+ABD=false
 
-# ---------------------------------------------------------------------------------------- #
-# Description                                                                              #
-# ---------------------------------------------------------------------------------------- #
-#                                                                                          #
-# ---------------------------------------------------------------------------------------- #
+if [[ $ABD = true ]]; then
+    DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD' | cut -d':' -f2 | sed -e 's/^ *//g' -e 's/ *$//g')
+else
+    DEFAULT_BRANCH='master'
+fi
+
+PROMPT="Are you sure you want to commit to the ${DEFAULT_BRANCH} branch? [Yes/No] "
 
 function check_for_confirmation
 {
@@ -54,7 +57,7 @@ function main()
     local confirmation=0
 
     if branch=$(git rev-parse --abbrev-ref HEAD 2>&1); then
-        if [[ "${branch}" = "master" ]]; then
+        if [[ "${branch}" = "${DEFAULT_BRANCH}" ]]; then
             confirmation=$(check_for_confirmation)
         fi
     fi

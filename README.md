@@ -3,18 +3,18 @@
 		<img src="https://raw.githubusercontent.com/WolfSoftware/branding/master/images/general/banners/64/black-and-white.png" alt="Wolf Software Logo" />
 	</a>
 	<br>
-	Prompt user when committing to master branch
+	Prompt user when committing to default branch branch
 </h1>
 
 <p align="center">
-	<a href="https://travis-ci.com/GitToolbox/prompt-master-commit">
-		<img src="https://img.shields.io/travis/com/GitToolbox/prompt-master-commit/master?style=for-the-badge&logo=travis" alt="Build Status">
+	<a href="https://travis-ci.com/GitToolbox/prompt-default-branch-commit">
+		<img src="https://img.shields.io/travis/com/GitToolbox/prompt-default-branch-commit/master?style=for-the-badge&logo=travis" alt="Build Status">
 	</a>
-	<a href="https://github.com/GitToolbox/prompt-master-commit/releases/latest">
-		<img src="https://img.shields.io/github/v/release/GitToolbox/prompt-master-commit?color=blue&style=for-the-badge&logo=github&logoColor=white&label=Latest%20Release" alt="Release">
+	<a href="https://github.com/GitToolbox/prompt-default-branch-commit/releases/latest">
+		<img src="https://img.shields.io/github/v/release/GitToolbox/prompt-default-branch-commit?color=blue&style=for-the-badge&logo=github&logoColor=white&label=Latest%20Release" alt="Release">
 	</a>
-	<a href="https://github.com/GitToolbox/prompt-master-commit/releases/latest">
-		<img src="https://img.shields.io/github/commits-since/GitToolbox/prompt-master-commit/latest.svg?color=blue&style=for-the-badge&logo=github&logoColor=white" alt="Commits since release">
+	<a href="https://github.com/GitToolbox/prompt-default-branch-commit/releases/latest">
+		<img src="https://img.shields.io/github/commits-since/GitToolbox/prompt-default-branch-commit/latest.svg?color=blue&style=for-the-badge&logo=github&logoColor=white" alt="Commits since release">
 	</a>
 	<a href="LICENSE.md">
 		<img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=read-the-docs&logoColor=white" alt="Software License">
@@ -34,17 +34,21 @@
 	</a>
 </p>
 
+> This project was formally called `prompt-master-branch` but has been renamed to reflect the more dynamic nature of the solution.
+
 ## Overview
 
-No matter which style of git workflow you use, it is generally (but not by everyone) agreed that committing directly into the master branch is a bad idea.
+No matter which style of git workflow you use, it is generally (but not by everyone) agreed that committing directly into the `default branch` is a bad idea.
+
+> We use the term `default branch` to mean any branch you have configured as your default, this is often `master` or `main` but can be configured on a repo by repo basis. 
 
 Some of the reasons for this include (and there are many many more):
 
-* If you push a work-in-progress state to remote, the master is potentially broken.
-* If another developer starts work for a new feature from master, they start with a potentially broken state. This slows down development.
+* If you push a work-in-progress state to remote, the `default branch` is potentially broken.
+* If another developer starts work for a new feature from the `default branch`, they start with a potentially broken state. This slows down development.
 * Different features/bug-fixes are not isolated, so that the complexity of all ongoing development tasks is combined in one branch. This increases the amount of communication necessary between all developers.
 * You cannot do pull requests which are very good mechanism for code reviews.
-* You cannot squash commits/change git history in general, as other developers might already have pulled the master branch in the meantime.
+* You cannot squash commits/change git history in general, as other developers might already have pulled the `default branch` in the meantime.
 
 ## What can we do ?
 
@@ -61,7 +65,7 @@ This solution works by making it is impossible to push directly to the branch. I
 
 * Stop any changes being made directly to the branch
 * No user interaction required
-* Works for repeated clones
+* Works across repeated clones
 
 **Cons:**
 
@@ -91,29 +95,29 @@ By using a pre-commit hook you can inspect the branch the user is attempting to 
 
 When it comes to local branch protection there are 2 main ways to approach the problem:
 
-1. Block - Simply block the commit (see our [block-master-commit](https://github.com/GitToolbox/block-master-commit) repo for this solution).
+1. Block - Simply block the commit (see our [block-default-branch-commit](https://github.com/GitToolbox/block-default-branch-commit) repo for this solution).
 2. Prompt - Warn the user they are trying to commit and prompt for confirmation (This solution).
 
 ### Prompting the User
 
-This solution implements a warn/prompt solution, so rather than blocking the user from committing to the master branch, it will instead warn them they are doing so and ask them to confirm that this is what they want to do.
+This solution implements a warn/prompt solution, so rather than blocking the user from committing to the `default branch`, it will instead warn them they are doing so and ask them to confirm that this is what they want to do.
 
-The main reason for this is that although pushing to master should be avoided as much as possible, we do foresee times where pushing to master is needed, or at the having that ability is a perceived benefit.
+The main reason for this is that although pushing to `default branch` should be avoided as much as possible, we do foresee times where pushing to the `default branch` is needed, or at the having that ability is a perceived benefit.
 
 #### Example
 
 ```shell
 # git commit -m "Some nice commit message"
-Are you sure you want to commit to the master branch? [Yes/No]
+Are you sure you want to commit to the default branch? [Yes/No]
 ```
 
 If the users selects `no` then the commit is aborted (same impact as `blocking` the commit), but if they select `yes` then the commit continues as normal. 
 
-This allows for greatly flexibility, as it will alert the user to the fact they are committing to master, but can allow it to happen when it is the desired intent.
+This allows for greatly flexibility, as it will alert the user to the fact they are committing to the `default branch`, but can allow it to happen when it is the desired intent.
 
 ### Installing the hook
 
-Copy the [script](src/prompt-master-commit) to the .git/hooks/pre-commit at the root of the desired repository (and ensure that it is executable [*chmod +x]*). At this point the hook will run (fire) every time you attempt to commit a change to the repository.
+Copy the [script](src/prompt-default-branch-commit) to the .git/hooks/pre-commit at the root of the desired repository (and ensure that it is executable [*chmod +x]*). At this point the hook will run (fire) every time you attempt to commit a change to the repository.
 
 > The name pre-commit is a special name used internally by git so must be the name used when you copy the script into the repository.
 
@@ -134,6 +138,16 @@ git rev-parse --show-toplevel
 ```
 
 > If you see something similar to **fatal: this operation must be run in a work tree** then try the first command instead.
+
+### Changing the defaults
+
+By default this script uses `master` as the default branch name, but this can be changed in one of 2 ways.
+
+1. Change the name in the global variable [script](https://github.com/GitToolbox/block-default-branch-commit/blob/master/src/block-default-branch-commit#L15).
+2. Turn on automatic branch identification. [script](https://github.com/GitToolbox/block-default-branch-commit/blob/master/src/block-default-branch-commit#L10).
+
+> Automatic branch identification does result in a short pause while it identifies the default branch from the remote end.
+
 
 ## Running multiple scripts
 
