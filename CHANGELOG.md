@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/GitToolbox/prompt-default-branch-commit/compare/v0.1.1...HEAD)
 
-- Update to match changes in block-default-branch-commit [`[head]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/)
+- Incorrect link to script in README [`[head]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/)
+
+- Update to match changes in block-default-branch-commit [`[047f68a]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/047f68a33c32c9bac8fb05d360264404d7d6ad99)
 
 - Add a new travis job to run github-linguist for information only [`[8a55719]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/8a5571992ee3e25d42142e89fb6c32a8cb14d5a8)
 

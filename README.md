@@ -143,8 +143,8 @@ git rev-parse --show-toplevel
 
 By default this script uses `master` as the default branch name, but this can be changed in one of 2 ways.
 
-1. Change the name in the global variable [script](https://github.com/GitToolbox/block-default-branch-commit/blob/master/src/block-default-branch-commit#L15).
-2. Turn on automatic branch identification. [script](https://github.com/GitToolbox/block-default-branch-commit/blob/master/src/block-default-branch-commit#L10).
+1. Change the name in the global variable [script](https://github.com/GitToolbox/prompt-default-branch-commit/blob/master/src/prompt-default-branch-commit#L15).
+2. Turn on automatic branch identification. [script](https://github.com/GitToolbox/prompt-default-branch-commit/blob/master/src/prompt-default-branch-commit#L10).
 
 > Automatic branch identification does result in a short pause while it identifies the default branch from the remote end.
 
