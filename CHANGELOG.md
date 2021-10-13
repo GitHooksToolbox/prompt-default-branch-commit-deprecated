@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/GitToolbox/prompt-default-branch-commit/compare/v0.1.2...HEAD)
 
-- Fix travis -> slack integration [`[head]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/)
+- rebrand [`[head]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/)
+
+- Fix travis -> slack integration [`[9954eb8]`](https://github.com/GitToolbox/prompt-default-branch-commit/commit/9954eb8d64c787f581e6f6369487384d6566afc7)
 
 ### [v0.1.1](https://github.com/GitToolbox/prompt-default-branch-commit/compare/v0.1.0...v0.1.1)
 
